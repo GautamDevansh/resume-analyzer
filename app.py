@@ -1,28 +1,13 @@
 from fastapi import FastAPI
 from pydantic import BaseModel 
+from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
 from python_modules.resumeParser import extract_text, extract_skills
 from python_modules.job_skills_extrtact import job_skills_and_frequency
 
 
 app = FastAPI()
 
-class ResumeRequest(BaseModel):
-    resume_path : str
-    jobDescription: list[str]
-
-@app.post("/extract-skills")
-async def extract_skills(data : ResumeRequest):
-    
-    resume_skills = extract_skills(extract_text(data.resume_path))
-    
-    job_skills = job_skills_and_frequency(jobDescription=data.jobDescription)
-from pydantic import BaseModel
-from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
-# from preprocessing.normalise import normalise
-from fastapi import FastAPI
-from pydantic import BaseModel
-app = FastAPI()
 
 class CompareRequest(BaseModel):
     resume_skills: list[str]
