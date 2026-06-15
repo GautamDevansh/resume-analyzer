@@ -36,6 +36,20 @@ app.post("/compare",upload.single("resume"),async function(req,res){
 
     const jobs=response.data.results;
     
+    // const jobDescriptions = jobs.map(job => job.description);
+    
+
+    const python_response=await axios.post(
+    "http://localhost:8000/extract-skills",
+    // {
+    //     resume: resume,
+    //     jobDescriptions: jobDescriptions
+    // }
+    );
+
+    const {resume_skills,job_skills}=python_response.data;
+
+
 
     //  it'll have the job description only
     const jobDescriptions = jobs.map(job => job.description);
