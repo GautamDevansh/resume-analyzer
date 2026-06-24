@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel 
 from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
-from python_modules.resumeParser import extract_text, extract_skil
+from python_modules.resume_parser import extract_text, extract_skil
 from matching_model.ontology_matching import ontology_match
 from matching_model.exact_matching import exact_match
 from matching_model.semantic_matching import semantic_match
